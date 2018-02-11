@@ -6,10 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -23,6 +30,7 @@ import br.com.allefdeveloper.lojaonline.R;
 public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHolderProduto> {
     List<ProdutosCatalogo> listaProd;
     Context context;
+    ShimmerFrameLayout container;
 
     public ProdutosAdapter(List<ProdutosCatalogo> listaProd, Context context) {
         this.listaProd = listaProd;
@@ -41,9 +49,11 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     public void onBindViewHolder(ProdutosAdapter.ViewHolderProduto holder, int position) {
         if(!listaProd.isEmpty() && listaProd.size()>0){
             holder.tituloProduto.setText(listaProd.get(position).getTitulo());
-            holder.precoProduto.setText(String.valueOf(listaProd.get(position).getPreco()));
-            if(!listaProd.get(position).getUrlImagens().isEmpty()){
-                Glide.with(context).load(listaProd.get(position).getUrlImagens()).into(holder.imagemProduto);
+            holder.precoProduto.setText("Preço: "+String.valueOf(listaProd.get(position).getPreco()+" R$"));
+            container.startShimmerAnimation();
+            if(listaProd.get(position).getUrlImagens()!=null){
+                Glide.with(context).load(listaProd.get(position).getUrlImagens()).diskCacheStrategy(DiskCacheStrategy.RESULT).placeholder(R.drawable.placeholder).into(holder.imagemProduto);
+                container.stopShimmerAnimation();
             }
         }
     }
@@ -57,14 +67,16 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         ImageView imagemProduto;
         TextView tituloProduto;
         TextView precoProduto;
-        FloatingActionButton adicionarProduto;
+        ImageButton adicionarProduto;
 
         public ViewHolderProduto(View v) {
             super(v);
             imagemProduto = v.findViewById(R.id.thumbnail);
             tituloProduto = v.findViewById(R.id.titulo);
             precoProduto = v.findViewById(R.id.preco);
-            adicionarProduto = v.findViewById(R.id.floatingActionButton);
+            adicionarProduto = v.findViewById(R.id.flotbutton);
+             container =
+                    (ShimmerFrameLayout) v.findViewById(R.id.shimmer_view_container);
 
         }
     }

@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
+import br.com.allefdeveloper.lojaonline.feminina.CatologoFemininoActivity;
 
-import br.com.allefdeveloper.lojaonline.masculina.CatalogoMasculinoActivity;
 
 public class PrincipalActivity extends AppCompatActivity {
     Button abrir;
@@ -20,7 +19,7 @@ public class PrincipalActivity extends AppCompatActivity {
         abrir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PrincipalActivity.this, CatalogoMasculinoActivity.class));
+                startActivity(new Intent(PrincipalActivity.this, CatologoFemininoActivity.class));
             }
         });
 

@@ -44,10 +44,9 @@ public class CatalogoMasculinoActivity extends AppCompatActivity {
         produto.setTitulo("Camisa Franca Basquete");
         produto.setUrlImagens("https://loja.francabasquete.com.br/894-thickbox_default/regata-oficial-preta-adulto-franca-basquete-camp-paulista-1718-infantil.jpg");
         catalogos.add(produto);
-//        ShimmerFrameLayout container =
-//                (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
-//        container.startShimmerAnimation();
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclclerprod);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ProdutosAdapter prodAdapter = new ProdutosAdapter(catalogos,CatalogoMasculinoActivity.this);

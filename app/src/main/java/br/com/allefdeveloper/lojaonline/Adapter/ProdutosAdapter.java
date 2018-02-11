@@ -49,7 +49,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     public void onBindViewHolder(ProdutosAdapter.ViewHolderProduto holder, int position) {
         if(!listaProd.isEmpty() && listaProd.size()>0){
             holder.tituloProduto.setText(listaProd.get(position).getTitulo());
-            holder.precoProduto.setText("Preço: "+String.valueOf(listaProd.get(position).getPreco()+" R$"));
+            holder.precoProduto.setText("Preço: "+String.valueOf(listaProd.get(position).getPreco()+" R"));
             container.startShimmerAnimation();
             if(listaProd.get(position).getUrlImagens()!=null){
                 Glide.with(context).load(listaProd.get(position).getUrlImagens()).diskCacheStrategy(DiskCacheStrategy.RESULT).placeholder(R.drawable.placeholder).into(holder.imagemProduto);
